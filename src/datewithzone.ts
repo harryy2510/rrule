@@ -35,7 +35,7 @@ export class DateWithZone {
     try {
       const datetime = moment(this.date)
 
-      const rezoned = datetime.tz(this.tzid!, true)
+      const rezoned = datetime.clone().tz(this.tzid!, true)
 
       return rezoned.toDate()
     } catch (e) {
