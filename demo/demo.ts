@@ -1,4 +1,5 @@
-import * as $ from 'jquery'
+const $ = require('jquery')
+import * as moment from 'moment-timezone'
 
 import { RRule, Weekday, Options } from '../src/index'
 
@@ -127,6 +128,10 @@ const makeRows = function (dates: Date[]) {
 }
 
 $(function () {
+  const $tzid = $('select[name="tzid"]')
+  const timezoneList = moment.tz.names().map(timezone => `<option ${timezone === 'America/Los_Angeles' ? 'selected' : ''} value="${timezone}">${timezone}</option>`)
+  $tzid.append(...timezoneList)
+
   const $tabs = $('#tabs')
 
   const activateTab = function ($a: JQuery<HTMLElement>) {
@@ -175,11 +180,11 @@ $(function () {
   $('input, select').on('keyup change', function () {
     const $in = $(this)
     const $section = $in.parents('section:first')
-    const inputMethod = $section.attr('id')!.split('-')[0]
+    const inputMethod = $section.attr('id').split('-')[0]
 
     switch (inputMethod) {
       case 'text':
-        makeRule = () => RRule.fromText($in.val()!.toString())
+        makeRule = () => RRule.fromText($in.val().toString())
         init = `RRule.fromText("${(this as HTMLFormElement).value}")`
         break
       case 'rfc':

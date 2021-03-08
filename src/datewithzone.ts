@@ -1,5 +1,5 @@
 import dateutil from './dateutil'
-import * as moment from 'moment-timezone'
+const moment = require('moment-timezone')
 
 export class DateWithZone {
   public date: Date
