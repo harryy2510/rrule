@@ -3,6 +3,8 @@ import * as moment from 'moment-timezone'
 
 import { RRule, Weekday, Options } from '../src/index'
 
+// moment.tz.setDefault('America/Los_Angeles')
+
 // Make library accessible to browser debuggers so users can try things out themselves
 // tslint:disable-next-line:no-duplicate-imports
 import * as rruleExports from '../src/index'

@@ -33,10 +33,8 @@ export class DateWithZone {
     }
 
     try {
-      const datetime = moment(this.date)
-
-      const rezoned = datetime.clone().tz(this.tzid!, true)
-
+      const datetime = moment.tz(this.date, moment.tz.guess())
+      const rezoned = datetime.tz(this.tzid!, true)
       return rezoned.toDate()
     } catch (e) {
       if (e instanceof TypeError) {
